@@ -8,3 +8,25 @@ exports.post = (request, response) => {
     response.json(artistCreated);
   });
 };
+
+// LIST HANDLER
+exports.list = (request, response) => {
+  // `Artist.find({}, ...)` return all documents within the Artist collection
+  Artist.find({}, (error, artists) => {
+    if (error) {
+      response.json('Error: something went wrong');
+    }
+    response.json(artists);
+  });
+};
+
+// GET HANDLER
+exports.get = (request, response) => {
+  // function `Artist.findById(req.params.artistId` will return document with matching `_id` value
+  Artist.findById(request.params.artistId, (error, artist) => {
+    if (error) {
+      response.json('Error: something went wrong');
+    }
+    response.json(artist);
+  });
+};

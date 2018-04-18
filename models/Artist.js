@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// ARTIST SCHEMA
+// ARTIST SCHEMA - STORE INFORMATION ABOUT ARTIST
 const artistSchema = new Schema({
   name: String,
   genre: String,

@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
-const artist = require('./controllers/Artist');
+const artistController = require('./controllers/Artist');
 
 // MLAB CONNECTION STRING
 require('dotenv').config({
@@ -19,11 +19,17 @@ mongoose.connect(process.env.DATABASE_CONN);
 // BODY-PARSER MIDDLEWARE
 app.use(bodyParser.json());
 
-// GET ROUTE
+// GET ROUTE - HTTP MESSAGE `localhost:3000`
 app.get('/', (request, response) => response.send('Hello MongoDb!'));
 
-// POST ROUTE
-app.post('/Artist', artist.post);
+// POST ROUTE - ADD ARTIST TO COLLECTION
+app.post('/Artist', artistController.post);
+
+// GET ROUTE - RETURN ARTIST COLLECTION
+app.get('/Artist', artistController.list);
+
+// GET ROUTE - RETURN SPECIFIC ARTIST FROM COLLECTION
+app.get('/Artist/:artistId', artistController.get);
 
 // FIRES UP WEB SERVER
 app.listen(3000, () => console.log('Music API listening on port 3000'));

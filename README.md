@@ -1,6 +1,5 @@
-![musicAPI](./musicAPI.jpeg)
 # Music Library API - Databases / Database Design / MongoDb
-Brief overview into databases and database design, followed by a deep dive into MongoDb (a NoSQL database). Using what learnt, build a Music Library API. Building a Music Library API. It will store information about artists, albums and songs. Implement a CRUD REST API to interact with a MongoDb database.
+Brief overview into databases and database design, followed by a deep dive into MongoDb (a NoSQL database). Building a Music Library API, it will store information about artists, albums and songs, using a hosted database provider called Mlab. They offer a free tier solution where a MongoDb database can be created and use it with Express API. Once Mlab account and a MongoDb database set-up, implement a CRUD REST API to interact with a MongoDb database.
 
 ### Built with:
 * [npm](https://www.npmjs.com/) - Node Package Manager
@@ -10,3 +9,9 @@ Brief overview into databases and database design, followed by a deep dive into 
 * [Postman](https://www.getpostman.com/) - Tool for Testing API
 * [mLab](https://mlab.com/) - Managed MongoDB Hosting
 * [Dotenv](https://github.com/motdotla/dotenv) - Loads Environment Variables
+
+### Testing the POST handler
+![MongoDB](./img/stepTwoMusicMongoDB.png)
+
+### Testing the GET handler
+![PostmanTwo](./img/stepThreeMusicPostman2.png)
