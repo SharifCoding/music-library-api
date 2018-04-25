@@ -22,7 +22,7 @@ exports.list = (request, response) => {
 
 // GET HANDLER
 exports.get = (request, response) => {
-  // function `Artist.findById(req.params.artistId` will return document with matching `_id` value
+  // `Artist.findById(req.params.artistId` will return document with matching `_id` value
   Artist.findById(request.params.artistId, (error, artist) => {
     if (error) {
       response.json('Error: something went wrong');
@@ -48,5 +48,16 @@ exports.put = (request, response) => {
       }
       response.json(artistUpdated);
     });
+  });
+};
+
+// DELETE HANDLER
+exports.deleteArtist = (request, response) => {
+  // `Artist.findByIdAndRemove(id, ...)` finds a matching document and removes it
+  Artist.findByIdAndRemove(request.params.artistId, (error) => {
+    if (error) {
+      response.json('Error: something went wrong');
+    }
+    response.json('Deleted');
   });
 };

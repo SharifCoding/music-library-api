@@ -34,5 +34,8 @@ app.get('/Artist/:artistId', artistController.get);
 // PUT ROUTE - UPDATE AN ARTIST PROFILE
 app.put('/Artist/:artistId', artistController.put);
 
+// DELETE ROUTE - DELETE AN ARTIST PROFILE
+app.delete('/Artist/:artistId', artistController.deleteArtist);
+
 // FIRES UP WEB SERVER
 app.listen(3000, () => console.log('Music API listening on port 3000'));
