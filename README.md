@@ -18,3 +18,9 @@ Brief overview into databases and database design, followed by a deep dive into 
 
 #### Testing the GET/POST handler with Jest
 ![JestFour](./img/stepFourTestingJest.png)
+
+#### Testing the PUT handler with MongaDB
+![MongoFive](./img/stepFiveMongo.png)
+
+#### Testing the PUT handler with Postman
+![JestFour](./img/stepFivePostman.png)

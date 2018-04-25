@@ -31,5 +31,8 @@ app.get('/Artist', artistController.list);
 // GET ROUTE - RETURN SPECIFIC ARTIST FROM COLLECTION
 app.get('/Artist/:artistId', artistController.get);
 
+// PUT ROUTE - UPDATE AN ARTIST PROFILE
+app.put('/Artist/:artistId', artistController.put);
+
 // FIRES UP WEB SERVER
 app.listen(3000, () => console.log('Music API listening on port 3000'));
