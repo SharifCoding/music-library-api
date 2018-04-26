@@ -1,4 +1,4 @@
-/* eslint no-underscore-dangle: 0 */
+/* eslint no-underscore-dangle: 0 no-console: 0 */
 const mongoose = require('mongoose');
 const path = require('path');
 const httpMocks = require('node-mocks-http');
@@ -53,6 +53,8 @@ describe('Artist PUT endpoint', () => {
           _id: artistCreated._id.toString(),
           name: 'Gold Panda',
           genre: 'Electronica',
+          // nested document set to empty
+          albums: [],
         });
         done();
       });

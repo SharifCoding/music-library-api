@@ -1,4 +1,4 @@
-/* eslint no-underscore-dangle: 0 */
+/* eslint no-underscore-dangle: 0 no-console: 0 */
 const mongoose = require('mongoose');
 const path = require('path');
 const httpMocks = require('node-mocks-http');

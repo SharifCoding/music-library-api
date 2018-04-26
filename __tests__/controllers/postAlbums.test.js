@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const httpMocks = require('node-mocks-http');
 const events = require('events');
-const { get } = require('../../controllers/Artist');
+const { postAlbum } = require('../../controllers/Artist');
 const Artist = require('../../models/Artist');
 
 // MLAB connection string
@@ -11,27 +11,29 @@ require('dotenv').config({
   path: path.join(__dirname, '../../settings.env'),
 });
 
-describe('Artist GET endpoint', () => {
+describe('Artist album POST Endpoint', () => {
   // establish a connection to our database before all test cases run
   beforeAll((done) => {
     mongoose.connect(process.env.TEST_DATABASE_CONN, done);
   });
   // test API against the test database
-  it('should retrieve an artist from database', (done) => {
-    expect.assertions(2);
-    // create a new Artist with request body values
-    const artist = new Artist({ name: 'Gold Panda', genre: 'Ambient' });
+  it('should create/add an album to an existing artist', (done) => {
+    const artist = new Artist({ name: 'Michael Jackson', genre: 'pop' });
     artist.save((err, artistCreated) => {
-      // throw an error if there is one
       if (err) {
         console.log(err, 'Error: something went wrong');
       }
+      expect.assertions(1);
       // mock a request object
       const request = httpMocks.createRequest({
-        method: 'GET',
-        URL: '/Artist/123',
+        method: 'POST',
+        url: `/Artist/${artistCreated._id}/albums`,
         params: {
           artistId: artistCreated._id,
+        },
+        body: {
+          name: 'Thriller',
+          year: 1982,
         },
       });
       // mock a response object
@@ -39,13 +41,15 @@ describe('Artist GET endpoint', () => {
         eventEmitter: events.EventEmitter,
       });
       // pass request/response objects into controller
-      get(request, response);
+      postAlbum(request, response);
 
       // listen out for end event that signals res.send
       response.on('end', () => {
-        const artistsGET = JSON.parse(response._getData());
-        expect(artistsGET.name).toBe('Gold Panda');
-        expect(artistsGET.genre).toBe('Ambient');
+        // `findById` to find artist and check albums has been added
+        Artist.findById(artistCreated._id, (error, foundArtist) => {
+          console.log(foundArtist);
+          expect(foundArtist.albums.length).toEqual(1);
+        });
         done();
       });
     });
@@ -58,9 +62,9 @@ describe('Artist GET endpoint', () => {
       }
       done();
     });
-  });
-  // close connection
-  afterAll(() => {
-    mongoose.connection.close();
+    // close connection
+    afterAll(() => {
+      mongoose.connection.close();
+    });
   });
 });

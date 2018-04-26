@@ -4,6 +4,7 @@ const Artist = require('../models/Artist');
 // POST HANDLER
 exports.post = (request, response) => {
   const artist = new Artist({ name: request.body.name, genre: request.body.genre });
+  // `save()` inserts a new document
   artist.save((error, artistCreated) => {
     response.json(artistCreated);
   });
@@ -59,5 +60,24 @@ exports.deleteArtist = (request, response) => {
       response.json('Error: something went wrong');
     }
     response.json('Deleted');
+  });
+};
+
+// POST HANDLER - ALBUM
+exports.postAlbum = (request, response) => {
+  Artist.findById(request.params.artistId, (error, artist) => {
+    if (error) {
+      response.json('Error: something went wrong');
+    }
+    // `artist.albums.concat` concatenate previous value of the albums array with request body
+    artist.set({ albums: artist.albums.concat([request.body]) });
+
+    artist.save((updateErr, artistUpdated) => {
+      if (updateErr) {
+        response.json('Cant update');
+      }
+
+      response.json(artistUpdated);
+    });
   });
 };

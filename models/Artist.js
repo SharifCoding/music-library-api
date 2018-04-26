@@ -8,6 +8,11 @@ const Schema = mongoose.Schema;
 const artistSchema = new Schema({
   name: String,
   genre: String,
+  // NEST OBJECTS - STORE ADDITIONAL INFORMATION
+  albums: [{
+    name: String,
+    year: Number,
+  }],
 });
 
 // VARIABLES EXPORTED

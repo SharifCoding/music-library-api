@@ -10,12 +10,6 @@ Brief overview into databases and database design, followed by a deep dive into 
 * [mLab](https://mlab.com/) - Managed MongoDB Hosting
 * [Dotenv](https://github.com/motdotla/dotenv) - Loads Environment Variables
 
-#### Testing the POST handler with MongaDB
-![MongoDB](./img/stepTwoMusicMongoDB.png)
-
-#### Testing the GET handler with Postman
-![PostmanTwo](./img/stepThreeMusicPostman2.png)
-
 #### Testing the GET/POST handler with Jest
 ![JestFour](./img/stepFourTestingJest.png)
 
@@ -27,3 +21,6 @@ Brief overview into databases and database design, followed by a deep dive into 
 
 #### Testing the PUT/DELETE handler with Jest
 ![JestFour](./img/stepSixTestingJest.png)
+
+#### Testing Nested Documents with the POST handler
+![MongoSeven](./img/stepSevenMongo.png)
