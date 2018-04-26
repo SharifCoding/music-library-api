@@ -53,8 +53,6 @@ describe('Artist PUT endpoint', () => {
           _id: artistCreated._id.toString(),
           name: 'Gold Panda',
           genre: 'Electronica',
-          // nested document set to empty
-          albums: [],
         });
         done();
       });

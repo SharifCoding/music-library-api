@@ -5,6 +5,7 @@ const httpMocks = require('node-mocks-http');
 const events = require('events');
 const { postAlbum } = require('../../controllers/Artist');
 const Artist = require('../../models/Artist');
+const Album = require('../../models/Album');
 
 // MLAB connection string
 require('dotenv').config({
@@ -23,7 +24,7 @@ describe('Artist album POST Endpoint', () => {
       if (err) {
         console.log(err, 'Error: something went wrong');
       }
-      expect.assertions(1);
+      expect.assertions(3);
       // mock a request object
       const request = httpMocks.createRequest({
         method: 'POST',
@@ -45,26 +46,27 @@ describe('Artist album POST Endpoint', () => {
 
       // listen out for end event that signals res.send
       response.on('end', () => {
-        // `findById` to find artist and check albums has been added
-        Artist.findById(artistCreated._id, (error, foundArtist) => {
-          console.log(foundArtist);
-          expect(foundArtist.albums.length).toEqual(1);
-        });
+        const albumCreated = JSON.parse(response._getData());
+        expect(albumCreated.name).toEqual('Thriller');
+        expect(albumCreated.year).toEqual(1982);
+        expect(albumCreated.artist._id).toEqual(artistCreated._id.toString());
         done();
       });
     });
   });
   // delete all documents 'drop(delete)'
   afterEach((done) => {
-    Artist.collection.drop((e) => {
-      if (e) {
-        console.log(e);
-      }
-      done();
+    Artist.collection.drop((artistDrop) => {
+      Album.collection.drop((albumDrop) => {
+        if (artistDrop || albumDrop) {
+          console.log('cant drop collections');
+        }
+        done();
+      });
     });
-    // close connection
-    afterAll(() => {
-      mongoose.connection.close();
-    });
+  });
+  // close connection
+  afterAll(() => {
+    mongoose.connection.close();
   });
 });

@@ -1,5 +1,6 @@
 // IMPORT LIBRARY
 const Artist = require('../models/Artist');
+const Album = require('../models/Album');
 
 // POST HANDLER
 exports.post = (request, response) => {
@@ -69,15 +70,16 @@ exports.postAlbum = (request, response) => {
     if (error) {
       response.json('Error: something went wrong');
     }
-    // `artist.albums.concat` concatenate previous value of the albums array with request body
-    artist.set({ albums: artist.albums.concat([request.body]) });
-
-    artist.save((updateErr, artistUpdated) => {
-      if (updateErr) {
-        response.json('Cant update');
+    const myAlbum = new Album({
+      artist,
+      name: request.body.name,
+      year: request.body.year,
+    });
+    myAlbum.save((crateErr, createAlbum) => {
+      if (crateErr) {
+        response.json('Cant create album');
       }
-
-      response.json(artistUpdated);
+      response.json(createAlbum);
     });
   });
 };
