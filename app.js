@@ -42,6 +42,9 @@ app.delete('/Artist/:artistId', artistController.deleteArtist);
 // POST ROUTE - ADD ALBUMS TO ARTIST COLLECTION
 app.post('/Artist/:artistId/album', albumController.postAlbum);
 
+// GET ROUTE - RETURN ALBUM FROM ARTIST COLLECTION
+app.get('/Artist/:artistId/albums', albumController.getAlbums);
+
 // POST ROUTE - ADD SONGS TO ARTIST COLLECTION
 app.post('/Album/:albumId/song', songController.postSong);
 

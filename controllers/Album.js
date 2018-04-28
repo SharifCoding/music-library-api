@@ -21,3 +21,15 @@ exports.postAlbum = (request, response) => {
     });
   });
 };
+
+// GET HANDLER
+exports.getAlbums = (require, response) => {
+  // `find` artist that matches artistId - `populate` artist fields - `exec` to run the query
+  Album.find({ artist: require.params.artistId }).populate('artist').exec((error, albums) => {
+    if (error) {
+      response.json('Cant find album');
+    }
+    // send a JSON response with the returned albums
+    response.json(albums);
+  });
+};
