@@ -20,7 +20,7 @@ describe('Artist GET endpoint', () => {
   it('should retrieve an artist from database', (done) => {
     expect.assertions(2);
     // create a new Artist with request body values
-    const artist = new Artist({ name: 'Gold Panda', genre: 'Ambient' });
+    const artist = new Artist({ name: 'Michael Jackson', genre: 'pop' });
     artist.save((err, artistCreated) => {
       // throw an error if there is one
       if (err) {
@@ -41,11 +41,11 @@ describe('Artist GET endpoint', () => {
       // pass request/response objects into controller
       get(request, response);
 
-      // listen out for end event that signals res.send
+      // listen out for end event that signals response.send
       response.on('end', () => {
         const artistsGET = JSON.parse(response._getData());
-        expect(artistsGET.name).toBe('Gold Panda');
-        expect(artistsGET.genre).toBe('Ambient');
+        expect(artistsGET.name).toBe('Michael Jackson');
+        expect(artistsGET.genre).toBe('pop');
         done();
       });
     });

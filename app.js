@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const artistController = require('./controllers/Artist');
+const albumController = require('./controllers/Album');
+const songController = require('./controllers/Song');
 
 // MLAB CONNECTION STRING
 require('dotenv').config({
@@ -38,7 +40,10 @@ app.put('/Artist/:artistId', artistController.put);
 app.delete('/Artist/:artistId', artistController.deleteArtist);
 
 // POST ROUTE - ADD ALBUMS TO ARTIST COLLECTION
-app.post('/Artist/:artistId/albums', artistController.postAlbum);
+app.post('/Artist/:artistId/album', albumController.postAlbum);
+
+// POST ROUTE - ADD SONGS TO ARTIST COLLECTION
+app.post('/Album/:albumId/song', songController.postSong);
 
 // FIRES UP WEB SERVER
 app.listen(3000, () => console.log('Music API listening on port 3000'));

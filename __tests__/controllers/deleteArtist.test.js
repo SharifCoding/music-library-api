@@ -20,7 +20,7 @@ describe('Artist DELETE endpoint', () => {
   it('should delete an artist from database', (done) => {
     expect.assertions(1);
     // create a new Artist with request body values
-    const artist = new Artist({ name: 'Gold Panda', genre: 'Ambient' });
+    const artist = new Artist({ name: 'Michael Jackson', genre: 'pop' });
     artist.save((err, artistCreated) => {
       // throw an error if there is one
       if (err) {
@@ -41,7 +41,7 @@ describe('Artist DELETE endpoint', () => {
       // pass request/response objects into controller
       deleteArtist(request, response);
 
-      // listen out for end event that signals res.send
+      // listen out for end event that signals response.send
       response.on('end', () => {
         Artist.findById(artistCreated._id, (error, artistsDELETE) => {
           expect(artistsDELETE).toEqual(null);

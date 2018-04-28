@@ -28,7 +28,7 @@ describe('Artist album POST Endpoint', () => {
       // mock a request object
       const request = httpMocks.createRequest({
         method: 'POST',
-        url: `/Artist/${artistCreated._id}/albums`,
+        url: `/Artist/${artistCreated._id}/album`,
         params: {
           artistId: artistCreated._id,
         },
@@ -44,7 +44,7 @@ describe('Artist album POST Endpoint', () => {
       // pass request/response objects into controller
       postAlbum(request, response);
 
-      // listen out for end event that signals res.send
+      // listen out for end event that signals response.send
       response.on('end', () => {
         const albumCreated = JSON.parse(response._getData());
         expect(albumCreated.name).toEqual('Thriller');

@@ -20,7 +20,7 @@ describe('Artist PUT endpoint', () => {
   it('should update an artist from database', (done) => {
     expect.assertions(1);
     // create a new Artist with request body values
-    const artist = new Artist({ name: 'Gold Panda', genre: 'Ambient' });
+    const artist = new Artist({ name: 'Michael Jackson', genre: 'pop' });
     artist.save((err, artistCreated) => {
       // throw an error if there is one
       if (err) {
@@ -34,8 +34,8 @@ describe('Artist PUT endpoint', () => {
           artistId: artistCreated._id,
         },
         body: {
-          name: 'Gold Panda',
-          genre: 'Electronica',
+          name: 'Michael Jackson',
+          genre: 'soul',
         },
       });
       // mock a response object
@@ -45,14 +45,14 @@ describe('Artist PUT endpoint', () => {
       // pass request/response objects into controller
       put(request, response);
 
-      // listen out for end event that signals res.send
+      // listen out for end event that signals response.send
       response.on('end', () => {
         const artistsPUT = JSON.parse(response._getData());
         expect(artistsPUT).toEqual({
           __v: 0,
           _id: artistCreated._id.toString(),
-          name: 'Gold Panda',
-          genre: 'Electronica',
+          name: 'Michael Jackson',
+          genre: 'soul',
         });
         done();
       });

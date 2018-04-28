@@ -24,8 +24,8 @@ describe('Artist POST Endpoint', () => {
       method: 'POST',
       url: '/Artist',
       body: {
-        name: 'Gold Panda',
-        genre: 'Ambient',
+        name: 'Michael Jackson',
+        genre: 'pop',
       },
     });
     // mock a response object
@@ -35,11 +35,11 @@ describe('Artist POST Endpoint', () => {
     // pass request/response objects into controller
     post(request, response);
 
-    // listen out for end event that signals res.send
+    // listen out for end event that signals response.send
     response.on('end', () => {
       const artistPOST = JSON.parse(response._getData());
-      expect(artistPOST.name).toBe('Gold Panda');
-      expect(artistPOST.genre).toBe('Ambient');
+      expect(artistPOST.name).toBe('Michael Jackson');
+      expect(artistPOST.genre).toBe('pop');
       done();
     });
   });

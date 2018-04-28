@@ -12,17 +12,20 @@ Brief overview into databases and database design, followed by a deep dive into 
 
 ---
 
-#### Testing the GET/POST handler with Jest
-![JestFour](./img/stepFourTestingJest.png)
-
 #### Testing the PUT handler with MongaDB
 ![MongoFive](./img/stepFiveMongo.png)
 
 #### Testing the DELETE handler with Postman
-![JestFour](./img/stepSixPostman.png)
+![PostmanFour](./img/stepSixPostman.png)
 
 #### Testing the PUT/DELETE handler with Jest
-![JestFour](./img/stepSixTestingJest.png)
+![JestSix](./img/stepSixTestingJest.png)
 
 #### Testing Nested Documents with the POST handler
 ![MongoSeven](./img/stepSevenMongo.png)
+
+#### Testing Nested Documents with the POST handler
+![MongoNine](./img/stepNinePostman.png)
+
+#### Testing the POST handlers for Album/Song with Jest
+![JestNine](./img/stepNineJest.png)
